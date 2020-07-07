@@ -3,3 +3,6 @@
   height: 100vh;
   background-color: green;
 }
+input {
+  width: 100%;
+}

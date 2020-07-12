@@ -1,8 +1,11 @@
 .Aside {
   width: 30vw;
   height: 100vh;
-  background-color: green;
+  background-color: #fbfbfc;
 }
-input {
-  width: 100%;
+.Aside-title {
+  font-size: 2rem;
+  padding: 1em;
+  color: #fbfbfc;
+  background-color: #2097f3;
 }

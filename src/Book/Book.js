@@ -6,12 +6,14 @@ class Book extends React.Component {
     this.state = {
       name: '',
       author: '',
-      length: 0,
-      status: true
+      length: '',
+      status: '',
     }
   }
   render() {
-    return
+    return (
+      <div className="Book"></div>
+    )
   }
 }
 export default Book;

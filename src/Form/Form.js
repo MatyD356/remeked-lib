@@ -1,4 +1,6 @@
 import React from 'react'
+import './Form.css'
+import RadioButton from '../RadioButton/RadioButton'
 
 class Form extends React.Component {
   constructor(props) {
@@ -7,7 +9,7 @@ class Form extends React.Component {
       name: '',
       author: '',
       length: '',
-      status: false
+      status: '',
     }
   }
   handleChange = (e) => {
@@ -21,34 +23,43 @@ class Form extends React.Component {
       case 'length':
         this.setState({ length: e.target.value })
         break;
-      case 'status':
-        this.setState({ status: e.target.checked })
-        break;
       default:
         return;
     }
   }
-  gatherData = () => {
-    console.log(this.state);
+  gatherData = (e) => {
+    e.preventDefault();
     this.setState({
       name: '',
       author: '',
       length: '',
-      status: false
-    })
+      status: '',
+    }, console.log(this.state))
+  }
+  radioChangeHandler = (event) => {
+    this.setState({
+      status: event.target.value
+    }, console.log(this.state));
   }
   render() {
     return (
-      <form className="Aside-form">
+      <form
+        className="Form"
+        onSubmit={this.gatherData}
+      >
         <label htmlFor="book-name">Book name
         <input
             id="book-name"
             className="name-input"
             type="text"
             name="name"
+            minLength={3}
             value={this.state.name}
             onChange={this.handleChange}
+            onBlur={this.handleChange}
+            required={true}
           />
+          <div className="error" />
         </label>
         <label htmlFor="book-author">Book author
         <input
@@ -56,39 +67,51 @@ class Form extends React.Component {
             className="author-input"
             type="text"
             name="author"
+            minLength={3}
             value={this.state.author}
             onChange={this.handleChange}
+            onBlur={this.handleChange}
+            required={true}
           />
+          <div className="error" />
         </label>
         <label htmlFor="book-length">Book length
         <input
             id="book-length"
             className="length-input"
-            type="text"
+            type="number"
             name="length"
             value={this.state.length}
             onChange={this.handleChange}
+            onBlur={this.handleChange}
+            required={true}
           />
+          <div className="error" />
         </label>
-        <label htmlFor="book-status">Book status
-        <input
-            id="book-status"
-            className="status-input"
-            type="checkbox"
+        <div className="radio-btn-container">Did u read the book?
+          <RadioButton
             name="status"
-            checked={this.state.status}
-            onChange={this.handleChange}
+            changed={this.radioChangeHandler}
+            id="1"
+            isSelected={this.state.status === "Yes"}
+            label="Yes"
+            value="Yes"
           />
-        </label>
+          <RadioButton
+            name="status"
+            changed={this.radioChangeHandler}
+            id="2"
+            isSelected={this.state.status === "No"}
+            label="No"
+            value="No"
+          />
+        </div>
         <button
-          type="button"
-          onClick={() => {
-            this.gatherData()
-          }}
-          className="submit-book-button"
-        >Add book</button>
+          className="submit-book-button">Add book
+        </button>
       </form>
     )
   }
 }
+
 export default Form

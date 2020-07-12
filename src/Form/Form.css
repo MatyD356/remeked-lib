@@ -1,0 +1,32 @@
+.Form {
+  padding: 2rem;
+  color: #848a8d;
+}
+label {
+  display: block;
+  padding: 1rem 1rem 1rem 0;
+}
+input {
+  color: #848a8d;
+  width: 90%;
+  padding: 1rem;
+  padding-left: 0;
+  border: none;
+  border-bottom: 1px solid #848a8d;
+  background-color: #fbfbfc;
+}
+input:active,
+input:focus {
+  color: #2097f3;
+  border-bottom: 1px solid #2097f3;
+}
+.submit-book-button {
+  cursor: pointer;
+  margin-top: 2rem;
+  background-color: #2097f3;
+  padding: 1rem 2rem;
+  border: none;
+  color: #fbfbfc;
+  font-weight: 700;
+  font-size: 1.5rem;
+}

@@ -1,0 +1,46 @@
+.Book {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #848a8d;
+  font-size: 1.25rem;
+  box-shadow: 5px 5px 10px 0px #888888;
+
+  .Book-title {
+    color: #fbfbfc;
+    background-color: #2097f3;
+    padding: 1rem;
+  }
+  .Book-author,
+  .Book-lenght,
+  .Book-status {
+    margin: 2rem;
+  }
+  .Book-author,
+  .Book-lenght {
+    margin-bottom: 0;
+  }
+  .Book-btn {
+    cursor: pointer;
+    margin: 1rem;
+    font-weight: 900;
+    display: inline-block;
+    background-color: #ed1c24;
+    border: none;
+    color: #fbfbfc;
+    padding: 1rem 1.5rem;
+    box-shadow: 2px 2px 5px 0px #888888;
+    transition-duration: 200ms;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+    &:active {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+  .change {
+    background-color: #2097f3;
+  }
+}

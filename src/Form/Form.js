@@ -1,6 +1,7 @@
 import React from 'react'
-import './Form.css'
+import './Form.scss'
 import RadioButton from '../RadioButton/RadioButton'
+import { connect } from 'react-redux';
 
 class Form extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class Form extends React.Component {
   }
   gatherData = (e) => {
     e.preventDefault();
+    this.props.addNewBook(this.state)
     this.setState({
       name: '',
       author: '',
@@ -42,6 +44,7 @@ class Form extends React.Component {
     }, console.log(this.state));
   }
   render() {
+
     return (
       <form
         className="Form"
@@ -91,6 +94,7 @@ class Form extends React.Component {
         <div className="radio-btn-container">Did u read the book?
           <RadioButton
             name="status"
+            required
             changed={this.radioChangeHandler}
             id="1"
             isSelected={this.state.status === "Yes"}
@@ -99,6 +103,7 @@ class Form extends React.Component {
           />
           <RadioButton
             name="status"
+            required
             changed={this.radioChangeHandler}
             id="2"
             isSelected={this.state.status === "No"}
@@ -113,5 +118,15 @@ class Form extends React.Component {
     )
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNewBook: (newBook) => {
+      dispatch({
+        type: 'ADD',
+        payload: newBook
+      })
+    }
+  };
+};
 
-export default Form
+export default connect(null, mapDispatchToProps)(Form)

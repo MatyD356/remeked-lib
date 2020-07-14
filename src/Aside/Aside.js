@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from '../Form/Form';
-import './Aside.css';
+import './Aside.scss';
 
 function Aside(props) {
   return (

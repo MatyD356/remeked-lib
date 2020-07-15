@@ -4,3 +4,17 @@ export function addBook(newBook) {
     payload: newBook
   }
 }
+
+export function removeBook(bookIndex) {
+  return {
+    type: 'REMOVE',
+    payload: bookIndex
+  }
+}
+
+export function changeBook(bookIndex) {
+  return {
+    type: 'CHANGE',
+    payload: bookIndex
+  }
+}

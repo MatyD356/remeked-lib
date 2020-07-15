@@ -37,12 +37,12 @@ class Form extends React.Component {
       author: '',
       length: '',
       status: '',
-    }, console.log(this.state))
+    })
   }
   radioChangeHandler = (event) => {
     this.setState({
       status: event.target.value
-    }, console.log(this.state));
+    });
   }
   render() {
 

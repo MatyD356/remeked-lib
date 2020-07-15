@@ -14,9 +14,9 @@ class Main extends React.Component {
     return (
       <main className="Main">
         {this.props.books.map((item, index) => {
-          console.log(item)
           return <Book
             key={index}
+            id={index}
             name={item.name}
             author={item.author}
             length={item.length}

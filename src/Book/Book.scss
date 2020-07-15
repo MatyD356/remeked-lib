@@ -1,15 +1,17 @@
+@import "../variables";
+
 .Book {
   margin: 2rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  color: #848a8d;
+  color: $gray-web;
   font-size: 1.25rem;
-  box-shadow: 5px 5px 10px 0px #888888;
+  box-shadow: 5px 5px 10px 0px $gray-web;
 
   .Book-title {
-    color: #fbfbfc;
-    background-color: #2097f3;
+    color: $white;
+    background-color: $tufts-blue;
     padding: 1rem;
   }
   .Book-author,
@@ -26,11 +28,11 @@
     margin: 1rem;
     font-weight: 900;
     display: inline-block;
-    background-color: #ed1c24;
+    background-color: $red-pigment;
     border: none;
-    color: #fbfbfc;
+    color: $white;
     padding: 1rem 1.5rem;
-    box-shadow: 2px 2px 5px 0px #888888;
+    box-shadow: 2px 2px 5px 0px $gray-web;
     transition-duration: 200ms;
 
     &:hover {
@@ -41,6 +43,6 @@
     }
   }
   .change {
-    background-color: #2097f3;
+    background-color: $tufts-blue;
   }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import './Form.scss'
 import RadioButton from '../RadioButton/RadioButton'
 import { connect } from 'react-redux';
+import { addBook } from '../actions';
 
 class Form extends React.Component {
   constructor(props) {
@@ -121,10 +122,7 @@ class Form extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     addNewBook: (newBook) => {
-      dispatch({
-        type: 'ADD',
-        payload: newBook
-      })
+      dispatch(addBook(newBook))
     }
   };
 };

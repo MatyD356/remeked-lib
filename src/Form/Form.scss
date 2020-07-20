@@ -19,8 +19,10 @@
   color: $gray-web;
 
   label {
-    display: block;
-    padding: 1rem 1rem 1rem 0;
+    display: flex;
+    padding: 1rem 1rem 0rem 0;
+    justify-content: space-between;
+    align-items: center;
   }
   input {
     color: $gray-web;
@@ -42,23 +44,22 @@
     box-shadow: none;
   }
   .error {
-    padding: 0 1rem 0 0;
-    width: 90%;
-    border-top: 1px solid $red-pigment;
+    font-size: 12px;
+    color: $red-pigment;
+    padding-right: 1rem;
+  }
+  .label-error {
     color: $red-pigment;
   }
-  input[type="number"] {
-    -webkit-appearance: textfield;
-    -moz-appearance: textfield;
-    appearance: textfield;
-  }
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
+  .input-error,
+  .input-error:focus,
+  .input-error:active {
+    border-bottom: 1px solid $red-pigment;
+    color: $red-pigment;
   }
   .radio-btn-container {
-    padding: 2rem;
     padding-left: 0;
+    padding-bottom: 1rem;
 
     .RadioButton {
       margin-top: 1rem;

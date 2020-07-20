@@ -15,14 +15,15 @@ const SignupForm = (props) => {
     },
     validationSchema: Yup.object({
       name: Yup.string()
-        .trim()
-        .matches(/^([a-z]{3,10})$/i, 'To short')
+        .min(3, 'Must be at least 3 characters long')
+        .max(15, 'Must be shorten than 15 characters')
         .required('Required'),
       author: Yup.string()
         .min(3, 'Must be at least 3 characters long')
-        .max(20, 'Must be 20 characters or less')
+        .max(15, 'Must be shorten than 15 characters')
         .required('Required'),
-      length: Yup.number()
+      length: Yup.string()
+        .matches(/^[0-9]*$/, 'Must be a number')
         .required('Required'),
       status: Yup.string()
         .required('Required'),
@@ -36,36 +37,53 @@ const SignupForm = (props) => {
       className="aside-form"
       onSubmit={formik.handleSubmit}
     >
-      <label htmlFor="name">Book name</label>
+      <label
+        htmlFor="name"
+        className={formik.errors.name ? "label-error" : null}
+      >Book name
+      {formik.touched.name && formik.errors.name ? (
+          <div className="error">{formik.errors.name}</div>) : null}
+      </label>
       <input
+        className={formik.errors.name ? "input-error" : null}
         id="name"
         type="text"
         {...formik.getFieldProps('name')}
       />
-      {formik.touched.name && formik.errors.name ? (
-        <div className="error">{formik.errors.name}</div>
-      ) : null}
-      <label htmlFor="author">Author name</label>
+      <label
+        htmlFor="author"
+        className={formik.errors.author ? "label-error" : null}
+      >Author name
+      {formik.touched.author && formik.errors.author ? (
+          <p className="error">{formik.errors.author}</p>
+        ) : null}</label>
       <input
-        pattern="^([a-z]{3,10})$"
+        className={formik.errors.author ? "input-error" : null}
+        onChange={formik.handleChange}
         id="author"
         type="text"
         {...formik.getFieldProps('author')}
       />
-      {formik.touched.authorName && formik.errors.authorName ? (
-        <div className="error">{formik.errors.authorName}</div>
-      ) : null}
-      <label htmlFor="length">Book length</label>
+      <label
+        className={formik.errors.length ? "label-error" : null}
+        htmlFor="length">
+        Book length
+      {formik.touched.length && formik.errors.length ? (
+          <p className="error">{formik.errors.length}</p>) : null}
+      </label>
       <input
+        className={formik.errors.length ? "input-error" : null}
         id="length"
-        type="number"
+        type="text"
         {...formik.getFieldProps('length')}
       />
-      {formik.touched.length && formik.errors.length ? (
-        <div className="error">{formik.errors.length}</div>
-      ) : null}
-      <div className="radio-btn-container">Did u read the book?
-      <div className="RadioButton">
+      <div className="radio-btn-container">
+        <label className={formik.errors.status ? "label-error" : null}>
+          Did u read the book?
+        {formik.touched.status && formik.errors.status ? (
+            <div className="error" >{formik.errors.status}</div>) : null}
+        </label>
+        <div className="RadioButton">
           <input
             id="1"
             name="status"
@@ -74,7 +92,8 @@ const SignupForm = (props) => {
             type="radio"
             defaultChecked={formik.values.gender === "Yes"}
           />
-          <label htmlFor="1">Yes</label>
+          <label
+            htmlFor="1">Yes</label>
         </div>
         <div className="RadioButton">
           <input
@@ -87,9 +106,6 @@ const SignupForm = (props) => {
           />
           <label htmlFor="2">No</label>
         </div>
-        {formik.touched.status && formik.errors.status ? (
-          <div >{formik.errors.status}</div>
-        ) : null}
       </div>
       <button
         className="submit-book-button"

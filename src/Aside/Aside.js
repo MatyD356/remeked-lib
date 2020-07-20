@@ -1,12 +1,12 @@
 import React from 'react';
-import Form from '../Form/Form';
+import SignupForm from '../Form/Form';
 import './Aside.scss';
 
 function Aside(props) {
   return (
     <aside className="Aside">
       <h1 className="Aside-title">MyBooks</h1>
-      <Form />
+      <SignupForm />
     </aside>
   );
 };

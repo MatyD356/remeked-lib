@@ -1,48 +1,5 @@
 @import "../variables";
 
-.Form {
-  padding: 2rem;
-  color: $gray-web;
-}
-label {
-  display: block;
-  padding: 1rem 1rem 1rem 0;
-}
-input {
-  color: $gray-web;
-  width: 90%;
-  padding: 1rem;
-  padding-left: 0;
-  border: none;
-  border-bottom: 1px solid $gray-web;
-  background-color: $white;
-}
-input:active,
-input:focus {
-  color: $tufts-blue;
-  border-bottom: 1px solid $tufts-blue;
-}
-.submit-book-button {
-  cursor: pointer;
-  margin-top: 2rem;
-  background-color: $tufts-blue;
-  padding: 1rem 2rem;
-  border: none;
-  color: $white;
-  font-weight: 700;
-  font-size: 1.5rem;
-  box-shadow: 2px 2px 5px 0px $gray-web;
-  transition-duration: 200ms;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-  &:active {
-    box-shadow: 0 0 0 0 transparent;
-  }
-}
-@import "../variables";
-
 @keyframes ripple {
   0% {
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0);
@@ -57,55 +14,122 @@ input:focus {
   }
 }
 
-.RadioButton {
-  margin: 16px 0;
-
-  input[type="radio"] {
-    display: none;
-
-    &:checked + label:before {
-      border-color: $tufts-blue;
-      animation: ripple 0.2s linear forwards;
-    }
-
-    &:checked + label:after {
-      transform: scale(1);
-    }
-  }
+.aside-form {
+  padding: 2rem;
+  color: $gray-web;
 
   label {
-    display: inline-block;
-    height: 20px;
-    position: relative;
-    padding: 0 (20px + 10px);
-    margin-bottom: 0;
+    display: block;
+    padding: 1rem 1rem 1rem 0;
+  }
+  input {
+    color: $gray-web;
+    width: 90%;
+    padding: 1rem;
+    padding-left: 0;
+    border: none;
+    background-color: $white;
+    transition-duration: 200ms;
+    border-bottom: 1px solid $gray-web;
+  }
+  input:active,
+  input:focus {
+    color: $tufts-blue;
+    border-bottom: 1px solid $tufts-blue;
+  }
+  input:invalid {
+    color: $red-pigment;
+    box-shadow: none;
+  }
+  .error {
+    padding: 0 1rem 0 0;
+    width: 90%;
+    border-top: 1px solid $red-pigment;
+    color: $red-pigment;
+  }
+  input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  .radio-btn-container {
+    padding: 2rem;
+    padding-left: 0;
+
+    .RadioButton {
+      margin-top: 1rem;
+      padding: 0.25rem 0;
+
+      input[type="radio"] {
+        display: none;
+
+        &:checked + label:before {
+          border-color: $tufts-blue;
+          animation: ripple 0.2s linear forwards;
+        }
+
+        &:checked + label:after {
+          transform: scale(1);
+        }
+      }
+
+      label {
+        display: inline-block;
+        height: 20px;
+        position: relative;
+        padding: 0 (20px + 10px);
+        margin-bottom: 0;
+        cursor: pointer;
+        vertical-align: bottom;
+
+        &:before,
+        &:after {
+          position: absolute;
+          content: "";
+          border-radius: 50%;
+          transition: all 0.3s ease;
+          transition-property: transform, border-color;
+        }
+
+        &:before {
+          left: 0;
+          top: 0;
+          width: 20px;
+          height: 20px;
+          border: 2px solid $gray-web;
+        }
+
+        &:after {
+          top: 23%;
+          left: 6%;
+          width: 14px;
+          height: 14px;
+          transform: scale(0);
+          background: $tufts-blue;
+        }
+      }
+    }
+  }
+  .submit-book-button {
     cursor: pointer;
-    vertical-align: bottom;
+    background-color: $tufts-blue;
+    padding: 1rem 2rem;
+    border: none;
+    color: $white;
+    font-weight: 700;
+    font-size: 1.5rem;
+    box-shadow: 2px 2px 5px 0px $gray-web;
+    transition-duration: 200ms;
 
-    &:before,
-    &:after {
-      position: absolute;
-      content: "";
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      transition-property: transform, border-color;
+    &:hover {
+      transform: scale(1.1);
     }
-
-    &:before {
-      left: 0;
-      top: 0;
-      width: 20px;
-      height: 20px;
-      border: 2px solid $gray-web;
-    }
-
-    &:after {
-      top: 23%;
-      left: 6%;
-      width: 14px;
-      height: 14px;
-      transform: scale(0);
-      background: $tufts-blue;
+    &:active {
+      box-shadow: 0 0 0 0 transparent;
     }
   }
 }

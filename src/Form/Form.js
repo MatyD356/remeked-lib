@@ -5,61 +5,64 @@ import { addBook } from '../actions';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 
-const SignupForm = () => {
+const SignupForm = (props) => {
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
+      name: '',
+      author: '',
+      length: '',
       status: '',
     },
     validationSchema: Yup.object({
-      firstName: Yup.string()
-        .min(3, 'Must be at least 3 characters long')
-        .max(15, 'Must be 15 characters or less')
+      name: Yup.string()
+        .trim()
+        .matches(/^([a-z]{3,10})$/i, 'To short')
         .required('Required'),
-      lastName: Yup.string()
+      author: Yup.string()
         .min(3, 'Must be at least 3 characters long')
         .max(20, 'Must be 20 characters or less')
         .required('Required'),
-      email: Yup.string()
-        .email('Invalid emaiil address')
+      length: Yup.number()
         .required('Required'),
-      status: Yup.bool()
+      status: Yup.string()
         .required('Required'),
     }),
     onSubmit: values => {
-      console.log(values);
+      props.addNewBook(values)
     }
   });
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="firstName">First Name</label>
+    <form
+      className="aside-form"
+      onSubmit={formik.handleSubmit}
+    >
+      <label htmlFor="name">Book name</label>
       <input
-        id="firstName"
+        id="name"
         type="text"
-        {...formik.getFieldProps('firstName')}
+        {...formik.getFieldProps('name')}
       />
-      {formik.touched.firstName && formik.errors.firstName ? (
-        <div>{formik.errors.firstName}</div>
+      {formik.touched.name && formik.errors.name ? (
+        <div className="error">{formik.errors.name}</div>
       ) : null}
-      <label htmlFor="lastName">Last Name</label>
+      <label htmlFor="author">Author name</label>
       <input
-        id="lastName"
+        pattern="^([a-z]{3,10})$"
+        id="author"
         type="text"
-        {...formik.getFieldProps('lastName')}
+        {...formik.getFieldProps('author')}
       />
-      {formik.touched.lastName && formik.errors.lastName ? (
-        <div>{formik.errors.lastName}</div>
+      {formik.touched.authorName && formik.errors.authorName ? (
+        <div className="error">{formik.errors.authorName}</div>
       ) : null}
-      <label htmlFor="email">Email Address</label>
+      <label htmlFor="length">Book length</label>
       <input
-        id="email"
-        type="email"
-        {...formik.getFieldProps('email')}
+        id="length"
+        type="number"
+        {...formik.getFieldProps('length')}
       />
-      {formik.touched.email && formik.errors.email ? (
-        <div>{formik.errors.email}</div>
+      {formik.touched.length && formik.errors.length ? (
+        <div className="error">{formik.errors.length}</div>
       ) : null}
       <div className="radio-btn-container">Did u read the book?
       <div className="RadioButton">
@@ -84,59 +87,19 @@ const SignupForm = () => {
           />
           <label htmlFor="2">No</label>
         </div>
+        {formik.touched.status && formik.errors.status ? (
+          <div >{formik.errors.status}</div>
+        ) : null}
       </div>
-      <button type="submit">Submit</button>
+      <button
+        className="submit-book-button"
+        type="submit">
+        Submit
+      </button>
     </form>
   );
 };
 
-class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      author: '',
-      length: '',
-      status: '',
-    }
-  }
-  handleChange = (e) => {
-    switch (e.target.name) {
-      case 'name':
-        this.setState({ name: e.target.value })
-        break;
-      case 'author':
-        this.setState({ author: e.target.value })
-        break;
-      case 'length':
-        this.setState({ length: e.target.value })
-        break;
-      default:
-        return;
-    }
-  }
-  gatherData = (e) => {
-    e.preventDefault();
-    this.props.addNewBook(this.state)
-    this.setState({
-      name: '',
-      author: '',
-      length: '',
-      status: '',
-    })
-  }
-  radioChangeHandler = (event) => {
-    this.setState({
-      status: event.target.value
-    });
-  }
-  render() {
-
-    return (
-      <SignupForm />
-    )
-  }
-}
 const mapDispatchToProps = (dispatch) => {
   return {
     addNewBook: (newBook) => {
@@ -145,4 +108,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Form)
+export default connect(null, mapDispatchToProps)(SignupForm)

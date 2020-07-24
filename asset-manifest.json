@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/remeked-lib/static/css/main.d633c2fc.chunk.css",
+    "main.js": "/remeked-lib/static/js/main.9bcce934.chunk.js",
+    "main.js.map": "/remeked-lib/static/js/main.9bcce934.chunk.js.map",
+    "runtime-main.js": "/remeked-lib/static/js/runtime-main.9d8827c9.js",
+    "runtime-main.js.map": "/remeked-lib/static/js/runtime-main.9d8827c9.js.map",
+    "static/js/2.41dc3f1c.chunk.js": "/remeked-lib/static/js/2.41dc3f1c.chunk.js",
+    "static/js/2.41dc3f1c.chunk.js.map": "/remeked-lib/static/js/2.41dc3f1c.chunk.js.map",
+    "index.html": "/remeked-lib/index.html",
+    "precache-manifest.f89450b7d5ae49b70d40c6ecefae7fcf.js": "/remeked-lib/precache-manifest.f89450b7d5ae49b70d40c6ecefae7fcf.js",
+    "service-worker.js": "/remeked-lib/service-worker.js",
+    "static/css/main.d633c2fc.chunk.css.map": "/remeked-lib/static/css/main.d633c2fc.chunk.css.map",
+    "static/js/2.41dc3f1c.chunk.js.LICENSE.txt": "/remeked-lib/static/js/2.41dc3f1c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9d8827c9.js",
+    "static/js/2.41dc3f1c.chunk.js",
+    "static/css/main.d633c2fc.chunk.css",
+    "static/js/main.9bcce934.chunk.js"
+  ]
+}

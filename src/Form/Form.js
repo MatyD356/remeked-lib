@@ -1,9 +1,10 @@
 import React from 'react'
 import './Form.scss'
 import { connect } from 'react-redux';
-import { addBook } from '../actions';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { addTaskToFirebase } from '../firebase';
+import { watchTaskAddedEvent } from '../store'
 
 const SignupForm = (props) => {
   const formik = useFormik({
@@ -29,7 +30,12 @@ const SignupForm = (props) => {
         .required('Required'),
     }),
     onSubmit: values => {
-      props.addNewBook(values)
+      addTaskToFirebase({
+        name: values.name,
+        author: values.author,
+        length: values.length,
+        status: values.status,
+      })
     }
   });
   return (
@@ -116,12 +122,10 @@ const SignupForm = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatch = dispatch => {
+  watchTaskAddedEvent(dispatch)
   return {
-    addNewBook: (newBook) => {
-      dispatch(addBook(newBook))
-    }
-  };
-};
+  }
+}
 
-export default connect(null, mapDispatchToProps)(SignupForm)
+export default connect(null, mapDispatch)(SignupForm)

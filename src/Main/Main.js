@@ -2,22 +2,25 @@ import React from 'react';
 import './Main.scss'
 import Book from '../Book/Book'
 import { connect } from 'react-redux';
+import { getTasksThunk } from '../store'
 
-const mapStateToProps = (state) => {
+const mapState = state => ({
+  tasks: state
+})
+const mapDispatch = dispatch => {
+  dispatch(getTasksThunk())
   return {
-    books: state.books
-  };
-};
-
+  }
+}
 class Main extends React.Component {
   render() {
     return (
       <main className="Main">
-        {this.props.books.map((item, index) => {
+        {this.props.tasks.map((item) => {
           return <Book
-            key={index}
-            id={index}
-            name={item.name}
+            key={item.id}
+            id={item.id}
+            name={item.task}
             author={item.author}
             length={item.length}
             status={item.status}
@@ -28,4 +31,4 @@ class Main extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapState, mapDispatch)(Main);

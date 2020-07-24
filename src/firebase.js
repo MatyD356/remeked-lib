@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import { v4 as uuid } from 'uuid';
 
 const config = {
   apiKey: "AIzaSyAvFCZfxzMzT_7eJIkjKpyOFdiKP_RKbv0",
@@ -13,5 +14,26 @@ const config = {
 
 firebase.initializeApp(config);
 const database = firebase.database();
+
+export const addTaskToFirebase = (task) => {
+  const id = uuid()
+  database.ref(`/${id}`).set({
+    task: task.name,
+    author: task.author,
+    length: task.length,
+    status: task.status,
+    id
+  })
+}
+
+export const removeTaskFromFirebase = (id) => {
+  database.ref(`/${id}`).remove()
+}
+
+export const changeStatusFromFirebase = (id, status) => {
+  database.ref(`/${id}`).update({
+    status: status === "Yes" ? "No" : "Yes"
+  })
+}
 
 export default database;

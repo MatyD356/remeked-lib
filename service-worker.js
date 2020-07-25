@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/remeked-lib/precache-manifest.5159fb5da117faaaa024a687c707fa15.js"
+  "/remeked-lib/precache-manifest.69b3356e8d9bbb517727ed08917f40ee.js"
 );
 
 self.addEventListener('message', (event) => {
